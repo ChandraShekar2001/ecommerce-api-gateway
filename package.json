@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@chandrashekar2001/ecommerce-shared": "npm:@ChandraShekar2001/ecommerce-shared@^1.0.2",
+    "@chandrashekar2001/ecommerce-shared": "npm:@chandrashekar2001/ecommerce-shared@^1.0.2",
     "@elastic/elasticsearch": "^8.13.1",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",

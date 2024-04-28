@@ -25,6 +25,7 @@ import { appRoutes } from '@gateway/routes';
 // import { axiosOrderInstance } from '@gateway/services/api/order.service';
 // import { axiosReviewInstance } from '@gateway/services/api/review.service';
 import { isAxiosError } from 'axios';
+import { axiosAuthInstance } from '@gateway/services/api/auth.service';
 
 const SERVER_PORT = 4000;
 const DEFAULT_ERROR_CODE = 500;
@@ -67,7 +68,7 @@ export class GatewayServer {
 
     app.use((req: Request, _res: Response, next: NextFunction) => {
       if (req.session?.jwt) {
-        // axiosAuthInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
+        axiosAuthInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosBuyerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosSellerInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
         // axiosGigInstance.defaults.headers['Authorization'] = `Bearer ${req.session?.jwt}`;
@@ -108,7 +109,8 @@ export class GatewayServer {
       }
 
       if (isAxiosError(error)) {
-        log.log('error', `GatewayService Axios Error - ${error?.response?.data?.comingFrom}:`, error);
+        // console.log(error);
+        // log.log('error', `GatewayService Axios Error - ${error?.response?.data?.comingFrom}:`, error);
         res.status(error?.response?.data?.statusCode ?? DEFAULT_ERROR_CODE).json({ message: error?.response?.data?.message ?? 'Error occurred.' });
       }
 
